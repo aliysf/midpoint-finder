@@ -9,21 +9,26 @@ import { ShareLink } from "@/components/share-link";
 import { JoinSession } from "@/components/join-session";
 import { ParticipantList } from "@/components/participant-list";
 import { MidpointDisplay } from "@/components/midpoint-display";
+import { NearbyPlaces } from "@/components/nearby-places";
 import { Users, RefreshCw } from "lucide-react";
 import type { GeoPoint } from "@/lib/geo";
+import type { Place } from "@/lib/places";
 
 /**
  * Dynamically import the map component to avoid SSR issues with Leaflet.
  * Leaflet relies on `window` which doesn't exist during server rendering.
  */
-const MapView = dynamic(() => import("@/components/map-view").then((m) => m.MapView), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[400px] w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
-      Loading map...
-    </div>
-  ),
-});
+const MapView = dynamic(
+  () => import("@/components/map-view").then((m) => m.MapView),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[400px] w-full rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
+        Loading map...
+      </div>
+    ),
+  }
+);
 
 interface Participant {
   id: string;
@@ -51,13 +56,15 @@ interface SessionViewProps {
  *
  * Features:
  * - Polls for session data every 3 seconds for real-time updates
- * - Displays an interactive map with all participant markers + midpoint
+ * - Displays an interactive map with participant markers, midpoint, and nearby places
  * - Shows participant list and midpoint coordinates
+ * - Shows nearby restaurants and cafes around the midpoint
  * - Provides share link and join form
  */
 export function SessionView({ slug }: SessionViewProps) {
   const [session, setSession] = useState<Session | null>(null);
   const [midpoint, setMidpoint] = useState<GeoPoint | null>(null);
+  const [nearbyPlaces, setNearbyPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -103,6 +110,14 @@ export function SessionView({ slug }: SessionViewProps) {
     };
   }, [fetchSession]);
 
+  /**
+   * Callback to receive loaded places from NearbyPlaces component
+   * so we can display them on the map.
+   */
+  const handlePlacesLoaded = useCallback((places: Place[]) => {
+    setNearbyPlaces(places);
+  }, []);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -138,8 +153,9 @@ export function SessionView({ slug }: SessionViewProps) {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">{session.name}</h1>
           <p className="text-sm text-muted-foreground">
-            Created by <span className="font-medium">{session.creatorName}</span>{" "}
-            · {new Date(session.createdAt).toLocaleDateString()}
+            Created by{" "}
+            <span className="font-medium">{session.creatorName}</span> ·{" "}
+            {new Date(session.createdAt).toLocaleDateString()}
           </p>
         </div>
         <Badge variant="outline" className="w-fit gap-1">
@@ -159,7 +175,7 @@ export function SessionView({ slug }: SessionViewProps) {
         </CardContent>
       </Card>
 
-      {/* Map */}
+      {/* Map — now includes nearby place markers */}
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center justify-between">
@@ -171,9 +187,14 @@ export function SessionView({ slug }: SessionViewProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <MapView participants={session.participants} midpoint={midpoint} />
+          <MapView
+            participants={session.participants}
+            midpoint={midpoint}
+            places={nearbyPlaces}
+          />
           <p className="text-xs text-muted-foreground mt-2">
-            🔵 Blue markers = participants · 🔴 Red marker = midpoint
+            🔵 Blue = participants · 🔴 Red = midpoint · 🟠 Orange = nearby
+            places
           </p>
         </CardContent>
       </Card>
@@ -196,6 +217,9 @@ export function SessionView({ slug }: SessionViewProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Nearby Places — restaurants & cafes near the midpoint */}
+      <NearbyPlaces midpoint={midpoint} onPlacesLoaded={handlePlacesLoaded} />
 
       <Separator />
 

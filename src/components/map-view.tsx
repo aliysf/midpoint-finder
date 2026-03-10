@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import type { GeoPoint } from "@/lib/geo";
+import type { Place } from "@/lib/places";
+import { placeTypeLabels, placeTypeIcons } from "@/lib/places";
 
 /**
  * Fix for Leaflet default marker icons not loading in Next.js.
@@ -36,6 +38,21 @@ const MidpointIcon = L.icon({
   shadowSize: [41, 41],
 });
 
+/**
+ * An orange icon for nearby place markers.
+ */
+const PlaceIcon = L.icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png",
+  iconRetinaUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 L.Marker.prototype.options.icon = DefaultIcon;
 
 interface Participant {
@@ -48,6 +65,7 @@ interface Participant {
 interface MapViewProps {
   participants: Participant[];
   midpoint: GeoPoint | null;
+  places?: Place[];
 }
 
 /**
@@ -82,12 +100,18 @@ function FitBounds({
 }
 
 /**
- * Interactive map displaying all participant locations and the calculated midpoint.
+ * Interactive map displaying all participant locations, the calculated midpoint,
+ * and nearby restaurants/cafes.
  *
  * Uses Leaflet with OpenStreetMap tiles. Automatically fits the view
- * to show all markers. The midpoint is shown as a red marker.
+ * to show all markers.
+ *
+ * Marker colors:
+ * - 🔵 Blue = participants
+ * - 🔴 Red = midpoint
+ * - 🟠 Orange = nearby places (restaurants/cafes)
  */
-export function MapView({ participants, midpoint }: MapViewProps) {
+export function MapView({ participants, midpoint, places = [] }: MapViewProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -146,6 +170,41 @@ export function MapView({ participants, midpoint }: MapViewProps) {
           </Popup>
         </Marker>
       )}
+
+      {/* Nearby place markers (orange) */}
+      {places.map((place) => (
+        <Marker
+          key={`place-${place.id}`}
+          position={[place.latitude, place.longitude]}
+          icon={PlaceIcon}
+        >
+          <Popup>
+            <strong>
+              {placeTypeIcons[place.type]} {place.name}
+            </strong>
+            <br />
+            <span style={{ fontSize: "11px", color: "#666" }}>
+              {placeTypeLabels[place.type]}
+              {place.cuisine && ` · ${place.cuisine}`}
+            </span>
+            {place.address && (
+              <>
+                <br />
+                <span style={{ fontSize: "11px" }}>📌 {place.address}</span>
+              </>
+            )}
+            <br />
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: "11px" }}
+            >
+              Get directions →
+            </a>
+          </Popup>
+        </Marker>
+      ))}
 
       <FitBounds participants={participants} midpoint={midpoint} />
     </MapContainer>
