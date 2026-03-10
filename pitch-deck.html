@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MidPoint — LinkedIn Pitch Deck</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #f1f5f9;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .info {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    max-width: 500px;
+  }
+
+  .slide {
+    width: 1080px;
+    height: 1080px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  /* ===== SLIDE 1: COVER ===== */
+  .slide-1 {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  .slide-1 .grid-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  .slide-1 .glow-1 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%);
+    top: -100px; right: -100px;
+  }
+  .slide-1 .glow-2 {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239,68,68,0.15) 0%, transparent 70%);
+    bottom: -150px; left: -100px;
+  }
+  .slide-1 .logo-icon {
+    width: 100px; height: 100px;
+    background: white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+  }
+  .slide-1 h1 {
+    font-size: 96px;
+    font-weight: 900;
+    letter-spacing: -3px;
+    position: relative;
+    z-index: 1;
+  }
+  .slide-1 .tagline {
+    font-size: 32px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 16px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+  .slide-1 .badges {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .slide-1 .badge {
+    padding: 12px 24px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ===== SLIDE 2: PROBLEM ===== */
+  .slide-2 {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    color: #0f172a;
+  }
+  .slide-2 .label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ef4444;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 32px;
+  }
+  .slide-2 h2 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 48px;
+  }
+  .slide-2 .problems {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+  .slide-2 .problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 28px 32px;
+    background: #fef2f2;
+    border-radius: 16px;
+    border-left: 5px solid #ef4444;
+  }
+  .slide-2 .problem-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .slide-2 .problem-text {
+    font-size: 24px;
+    color: #334155;
+    line-height: 1.4;
+  }
+
+  /* ===== SLIDE 3: SOLUTION ===== */
+  .slide-3 {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    color: white;
+  }
+  .slide-3 .label {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 32px;
+  }
+  .slide-3 h2 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 48px;
+  }
+  .slide-3 .solution-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    justify-content: center;
+  }
+  .slide-3 .sol-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .slide-3 .sol-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+  .slide-3 .sol-text h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .slide-3 .sol-text p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ===== SLIDE 4: HOW IT WORKS ===== */
+  .slide-4 {
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    color: #0f172a;
+  }
+  .slide-4 .label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+  .slide-4 h2 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 56px;
+  }
+  .slide-4 .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    flex: 1;
+    justify-content: center;
+  }
+  .slide-4 .step {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .slide-4 .step-num {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #0f172a;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .slide-4 .step-content {
+    flex: 1;
+    padding: 28px 32px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .slide-4 .step-content h3 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .slide-4 .step-content p {
+    font-size: 20px;
+    color: #64748b;
+  }
+  .slide-4 .step-arrow {
+    display: flex;
+    justify-content: center;
+    margin: -12px 0 -12px 35px;
+    color: #cbd5e1;
+    font-size: 28px;
+  }
+
+  /* ===== SLIDE 5: FEATURES ===== */
+  .slide-5 {
+    background: #0f172a;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    color: white;
+  }
+  .slide-5 .label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f59e0b;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+  .slide-5 h2 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 48px;
+  }
+  .slide-5 .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+    align-content: center;
+  }
+  .slide-5 .feature {
+    padding: 32px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .slide-5 .feature-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+  .slide-5 .feature h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .slide-5 .feature p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+
+  /* ===== SLIDE 6: TECH STACK ===== */
+  .slide-6 {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    color: #0f172a;
+  }
+  .slide-6 .label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #8b5cf6;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+  .slide-6 h2 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 56px;
+  }
+  .slide-6 .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+    align-content: center;
+  }
+  .slide-6 .stack-item {
+    padding: 36px 28px;
+    background: #f8fafc;
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+  }
+  .slide-6 .stack-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .slide-6 .stack-item h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .slide-6 .stack-item p {
+    font-size: 16px;
+    color: #64748b;
+  }
+
+  /* ===== SLIDE 7: CTA ===== */
+  .slide-7 {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  .slide-7 .glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .slide-7 .content { position: relative; z-index: 1; }
+  .slide-7 .emoji-row {
+    font-size: 64px;
+    margin-bottom: 40px;
+    letter-spacing: 16px;
+  }
+  .slide-7 h2 {
+    font-size: 64px;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+  .slide-7 .subtitle {
+    font-size: 28px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 48px;
+    max-width: 700px;
+  }
+  .slide-7 .url-box {
+    padding: 20px 48px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #60a5fa;
+    margin-bottom: 32px;
+  }
+  .slide-7 .cta-text {
+    font-size: 22px;
+    color: rgba(255,255,255,0.5);
+  }
+  .slide-7 .arrow {
+    font-size: 40px;
+    margin-bottom: 16px;
+    color: #60a5fa;
+  }
+
+  /* slide numbering */
+  .slide-num {
+    position: absolute;
+    bottom: 32px;
+    right: 40px;
+    font-size: 16px;
+    color: rgba(128,128,128,0.4);
+    font-weight: 600;
+  }
+  .slide-1 .slide-num, .slide-3 .slide-num, .slide-5 .slide-num, .slide-7 .slide-num {
+    color: rgba(255,255,255,0.2);
+  }
+</style>
+</head>
+<body>
+
+<p class="info">
+  <strong>LinkedIn Pitch Deck — 7 Slides</strong><br>
+  Right-click each slide → "Save Image As" or take screenshots at 1080×1080
+</p>
+
+<!-- SLIDE 1: COVER -->
+<div class="slide slide-1">
+  <div class="grid-bg"></div>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+  <div class="logo-icon">📍</div>
+  <h1>MidPoint</h1>
+  <div class="tagline">Find the middle ground between friends</div>
+  <div class="badges">
+    <span class="badge">🗺️ Live Map</span>
+    <span class="badge">🎯 Midpoint</span>
+    <span class="badge">🍽️ Nearby Places</span>
+  </div>
+  <div class="slide-num">1 / 7</div>
+</div>
+
+<!-- SLIDE 2: PROBLEM -->
+<div class="slide slide-2">
+  <div class="label">😤 The Problem</div>
+  <h2>Finding a fair meeting<br>spot shouldn't be hard</h2>
+  <div class="problems">
+    <div class="problem-item">
+      <div class="problem-icon">🤔</div>
+      <div class="problem-text">"Where should we meet?" — The question that starts 30 minutes of back-and-forth texting</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">⚖️</div>
+      <div class="problem-text">Someone always ends up traveling way more than everyone else</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">📍</div>
+      <div class="problem-text">Manually comparing locations on Google Maps is tedious and inaccurate</div>
+    </div>
+  </div>
+  <div class="slide-num">2 / 7</div>
+</div>
+
+<!-- SLIDE 3: SOLUTION -->
+<div class="slide slide-3">
+  <div class="label">💡 The Solution</div>
+  <h2>MidPoint finds the<br>perfect spot — instantly</h2>
+  <div class="solution-cards">
+    <div class="sol-card">
+      <div class="sol-icon">🔗</div>
+      <div class="sol-text">
+        <h3>One Link, Everyone Joins</h3>
+        <p>Create a session and share the link — no accounts needed</p>
+      </div>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">📱</div>
+      <div class="sol-text">
+        <h3>Browser Location Sharing</h3>
+        <p>Friends tap "Share Location" — works on any device</p>
+      </div>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">🎯</div>
+      <div class="sol-text">
+        <h3>Instant Midpoint Calculation</h3>
+        <p>Geographic center-of-gravity algorithm shows the fairest spot</p>
+      </div>
+    </div>
+    <div class="sol-card">
+      <div class="sol-icon">🍽️</div>
+      <div class="sol-text">
+        <h3>Discover Nearby Venues</h3>
+        <p>Restaurants, cafes & bars around the midpoint — ready to pick</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">3 / 7</div>
+</div>
+
+<!-- SLIDE 4: HOW IT WORKS -->
+<div class="slide slide-4">
+  <div class="label">⚡ How It Works</div>
+  <h2>3 simple steps</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Create a Session</h3>
+        <p>Name it and get a unique shareable link</p>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Share with Friends</h3>
+        <p>Everyone opens the link and shares their location</p>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>See the Midpoint</h3>
+        <p>Live map shows all locations + the midpoint + nearby places</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">4 / 7</div>
+</div>
+
+<!-- SLIDE 5: FEATURES -->
+<div class="slide slide-5">
+  <div class="label">✨ Key Features</div>
+  <h2>Built for simplicity</h2>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">🚀</div>
+      <h3>No Login Required</h3>
+      <p>Jump in instantly — zero friction, zero accounts</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📡</div>
+      <h3>Real-time Updates</h3>
+      <p>Map updates live as people join the session</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🗺️</div>
+      <h3>Interactive Map</h3>
+      <p>Custom markers for people, midpoint & venues</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🍽️</div>
+      <h3>Nearby Places</h3>
+      <p>Restaurants, cafes & bars auto-discovered via OpenStreetMap</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <h3>Google Maps Link</h3>
+      <p>Open the midpoint directly in Google Maps for directions</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🌍</div>
+      <h3>Works Worldwide</h3>
+      <p>Accurate midpoint calculation anywhere on Earth</p>
+    </div>
+  </div>
+  <div class="slide-num">5 / 7</div>
+</div>
+
+<!-- SLIDE 6: TECH STACK -->
+<div class="slide slide-6">
+  <div class="label">🛠️ Built With</div>
+  <h2>Modern tech stack</h2>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-icon">⚡</div>
+      <h3>Next.js 16</h3>
+      <p>App Router + Turbopack</p>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🎨</div>
+      <h3>shadcn/ui</h3>
+      <p>Tailwind CSS v4</p>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🗃️</div>
+      <h3>Prisma ORM</h3>
+      <p>PostgreSQL (Neon)</p>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🗺️</div>
+      <h3>Leaflet</h3>
+      <p>Interactive Maps</p>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🌐</div>
+      <h3>Overpass API</h3>
+      <p>OpenStreetMap Data</p>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🚀</div>
+      <h3>Vercel</h3>
+      <p>Edge Deployment</p>
+    </div>
+  </div>
+  <div class="slide-num">6 / 7</div>
+</div>
+
+<!-- SLIDE 7: CTA -->
+<div class="slide slide-7">
+  <div class="glow"></div>
+  <div class="content">
+    <div class="emoji-row">📍 🎯 🍽️</div>
+    <h2>Try it now!</h2>
+    <div class="subtitle">
+      Create a session, share with friends,<br>and find your perfect meeting spot
+    </div>
+    <div class="arrow">⬇</div>
+    <div class="url-box">midpoint-finder-gamma.vercel.app</div>
+    <div class="cta-text">Free & open source · No login required · Works on any device</div>
+  </div>
+  <div class="slide-num">7 / 7</div>
+</div>
+
+</body>
+</html>
