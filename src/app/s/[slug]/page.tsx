@@ -1,11 +1,12 @@
 import { SessionView } from "@/components/session-view";
 import type { Metadata } from "next";
+import { prisma } from "@/lib/prisma";
 
 /**
  * Dynamic session page.
  *
  * Renders the interactive session view for a given slug.
- * The slug is extracted from the URL params.
+ * Generates rich metadata (OG tags) dynamically from the session data.
  *
  * Route: /s/:slug
  */
@@ -18,9 +19,49 @@ export async function generateMetadata({
   params,
 }: SessionPageProps): Promise<Metadata> {
   const { slug } = await params;
+
+  // Fetch session data for rich metadata
+  let sessionName = "Session";
+  let participantCount = 0;
+
+  try {
+    const session = await prisma.session.findUnique({
+      where: { slug },
+      include: { _count: { select: { participants: true } } },
+    });
+    if (session) {
+      sessionName = session.name;
+      participantCount = session._count.participants;
+    }
+  } catch {
+    // Fallback to generic metadata if DB fails
+  }
+
+  const title = `${sessionName} — MidPoint`;
+  const description = `Join "${sessionName}" on MidPoint! ${
+    participantCount > 0
+      ? `${participantCount} ${participantCount === 1 ? "person has" : "people have"} already shared their location.`
+      : "Share your location to find the group's geographic midpoint."
+  } No login required.`;
+
   return {
-    title: `Session ${slug} — MidPoint`,
-    description: "Join this session, share your location, and find the midpoint!",
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `https://midpoint-finder-gamma.vercel.app/s/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    robots: {
+      index: false, // Session pages are ephemeral, don't index
+      follow: true,
+    },
   };
 }
 
