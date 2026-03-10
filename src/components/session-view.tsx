@@ -192,10 +192,20 @@ export function SessionView({ slug }: SessionViewProps) {
             midpoint={midpoint}
             places={nearbyPlaces}
           />
-          <p className="text-xs text-muted-foreground mt-2">
-            🔵 Blue = participants · 🔴 Red = midpoint · 🟠 Orange = nearby
-            places
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground mt-2">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block h-3 w-3 rounded-full bg-blue-500 border border-white shadow-sm" />
+              Participants
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block h-3 w-3 rounded-full bg-red-500 border border-white shadow-sm" />
+              Midpoint
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block h-3 w-3 rounded-sm bg-white border-2 border-orange-500 shadow-sm" />
+              Nearby places
+            </span>
+          </div>
         </CardContent>
       </Card>
 

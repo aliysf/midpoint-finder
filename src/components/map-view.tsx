@@ -7,53 +7,162 @@ import type { GeoPoint } from "@/lib/geo";
 import type { Place } from "@/lib/places";
 import { placeTypeLabels, placeTypeIcons } from "@/lib/places";
 
+/* ------------------------------------------------------------------ */
+/*  Custom marker icon factories                                       */
+/* ------------------------------------------------------------------ */
+
 /**
- * Fix for Leaflet default marker icons not loading in Next.js.
- * The default icon URLs reference files from the Leaflet package
- * that aren't properly resolved by Next.js bundler.
+ * Creates a participant marker — rounded pill with person SVG + first initial.
+ * Color: blue (#3b82f6)
  */
-const DefaultIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+function createParticipantIcon(name: string) {
+  const initial = name.charAt(0).toUpperCase();
+  return L.divIcon({
+    className: "",
+    iconSize: [36, 44],
+    iconAnchor: [18, 44],
+    popupAnchor: [0, -46],
+    html: `
+      <div style="
+        position: relative;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #3b82f6;
+        border: 2.5px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+        font-family: system-ui, sans-serif;
+        line-height: 1;
+      ">
+        ${initial}
+        <div style="
+          position: absolute;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-top: 9px solid #3b82f6;
+          filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+        "></div>
+      </div>
+    `,
+  });
+}
+
+/**
+ * Midpoint marker — red pin with crosshair + animated pulse ring.
+ * Color: red (#ef4444)
+ */
+const MidpointIcon = L.divIcon({
+  className: "",
+  iconSize: [48, 56],
+  iconAnchor: [24, 56],
+  popupAnchor: [0, -58],
+  html: `
+    <div style="position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+      <!-- pulse ring -->
+      <div style="
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(239,68,68,0.18);
+        animation: midpointPulse 2s ease-out infinite;
+      "></div>
+      <!-- pin body -->
+      <div style="
+        position: relative;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ef4444;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgba(239,68,68,0.45), 0 1px 4px rgba(0,0,0,0.2);
+        z-index: 2;
+      ">
+        <!-- crosshair SVG -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2" x2="12" y2="6"/>
+          <line x1="12" y1="18" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="6" y2="12"/>
+          <line x1="18" y1="12" x2="22" y2="12"/>
+        </svg>
+        <!-- pointer -->
+        <div style="
+          position: absolute;
+          bottom: -9px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-top: 10px solid #ef4444;
+          filter: drop-shadow(0 2px 2px rgba(0,0,0,0.15));
+        "></div>
+      </div>
+    </div>
+  `,
 });
 
 /**
- * A red icon for the midpoint marker to visually distinguish it.
+ * Creates a place marker — small floating bubble with the venue emoji.
+ * Color: white with subtle shadow.
  */
-const MidpointIcon = L.icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-  iconRetinaUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
+function createPlaceIcon(emoji: string) {
+  return L.divIcon({
+    className: "",
+    iconSize: [32, 40],
+    iconAnchor: [16, 40],
+    popupAnchor: [0, -42],
+    html: `
+      <div style="
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border: 2px solid #f97316;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        font-size: 16px;
+        line-height: 1;
+      ">
+        ${emoji}
+        <div style="
+          position: absolute;
+          bottom: -7px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-top: 7px solid #f97316;
+        "></div>
+      </div>
+    `,
+  });
+}
 
-/**
- * An orange icon for nearby place markers.
- */
-const PlaceIcon = L.icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png",
-  iconRetinaUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
+/* ------------------------------------------------------------------ */
+/*  Components                                                         */
+/* ------------------------------------------------------------------ */
 
 interface Participant {
   id: string;
@@ -101,15 +210,12 @@ function FitBounds({
 
 /**
  * Interactive map displaying all participant locations, the calculated midpoint,
- * and nearby restaurants/cafes.
+ * and nearby restaurants/cafes with beautiful custom markers.
  *
- * Uses Leaflet with OpenStreetMap tiles. Automatically fits the view
- * to show all markers.
- *
- * Marker colors:
- * - 🔵 Blue = participants
- * - 🔴 Red = midpoint
- * - 🟠 Orange = nearby places (restaurants/cafes)
+ * Marker styles:
+ * - Participant  → blue circle with first-name initial + drop pointer
+ * - Midpoint     → red circle with crosshair icon + animated pulse ring
+ * - Nearby place → white rounded square with venue emoji + orange border
  */
 export function MapView({ participants, midpoint, places = [] }: MapViewProps) {
   const [isMounted, setIsMounted] = useState(false);
@@ -146,18 +252,24 @@ export function MapView({ participants, midpoint, places = [] }: MapViewProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* Participant markers (blue) */}
+      {/* Participant markers — blue circle with initial */}
       {participants.map((p) => (
-        <Marker key={p.id} position={[p.latitude, p.longitude]}>
+        <Marker
+          key={p.id}
+          position={[p.latitude, p.longitude]}
+          icon={createParticipantIcon(p.name)}
+        >
           <Popup>
             <strong>{p.name}</strong>
             <br />
-            {p.latitude.toFixed(4)}, {p.longitude.toFixed(4)}
+            <span style={{ fontSize: "12px", color: "#666" }}>
+              {p.latitude.toFixed(4)}, {p.longitude.toFixed(4)}
+            </span>
           </Popup>
         </Marker>
       ))}
 
-      {/* Midpoint marker (red) */}
+      {/* Midpoint marker — red crosshair with pulse */}
       {midpoint && (
         <Marker
           position={[midpoint.latitude, midpoint.longitude]}
@@ -166,17 +278,19 @@ export function MapView({ participants, midpoint, places = [] }: MapViewProps) {
           <Popup>
             <strong>📍 Midpoint</strong>
             <br />
-            {midpoint.latitude.toFixed(4)}, {midpoint.longitude.toFixed(4)}
+            <span style={{ fontSize: "12px", color: "#666" }}>
+              {midpoint.latitude.toFixed(4)}, {midpoint.longitude.toFixed(4)}
+            </span>
           </Popup>
         </Marker>
       )}
 
-      {/* Nearby place markers (orange) */}
+      {/* Nearby place markers — emoji bubbles */}
       {places.map((place) => (
         <Marker
           key={`place-${place.id}`}
           position={[place.latitude, place.longitude]}
-          icon={PlaceIcon}
+          icon={createPlaceIcon(placeTypeIcons[place.type] || "📍")}
         >
           <Popup>
             <strong>
@@ -198,7 +312,7 @@ export function MapView({ participants, midpoint, places = [] }: MapViewProps) {
               href={`https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ fontSize: "11px" }}
+              style={{ fontSize: "11px", color: "#3b82f6" }}
             >
               Get directions →
             </a>
