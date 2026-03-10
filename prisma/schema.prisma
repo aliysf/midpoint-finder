@@ -1,0 +1,40 @@
+// Prisma schema for MidPoint Finder
+// Uses SQLite for zero-config local development
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// A session represents a shareable midpoint-finding room.
+/// Users create a session and share the link with friends.
+model Session {
+  id           String        @id @default(cuid())
+  slug         String        @unique
+  name         String
+  creatorName  String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  participants Participant[]
+
+  @@index([slug])
+}
+
+/// A participant is someone who has joined a session
+/// and shared their geographic location.
+model Participant {
+  id        String   @id @default(cuid())
+  name      String
+  latitude  Float
+  longitude Float
+  joinedAt  DateTime @default(now())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+}

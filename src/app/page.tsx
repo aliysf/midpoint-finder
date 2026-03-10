@@ -1,65 +1,149 @@
-import Image from "next/image";
+import { CreateSessionDialog } from "@/components/create-session-dialog";
+import { Card, CardContent } from "@/components/ui/card";
+import { MapPin, Share2, Users, Target } from "lucide-react";
 
-export default function Home() {
+/**
+ * Home page — landing page for MidPoint.
+ *
+ * Features:
+ * - Hero section explaining the app
+ * - "Create Session" call-to-action
+ * - How it works steps
+ * - Feature highlights
+ */
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden border-b">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="container mx-auto px-4 py-24 sm:py-32 text-center relative">
+          <div className="mx-auto max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+              <Target className="h-4 w-4" />
+              Find the perfect meeting spot
+            </div>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+              Find the{" "}
+              <span className="text-primary">midpoint</span>{" "}
+              between friends
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Create a shareable link, have everyone share their location, and
+              instantly discover the geographic center between all of you.
+              Perfect for finding fair meeting spots!
+            </p>
+            <div className="pt-4">
+              <CreateSessionDialog />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </section>
+
+      {/* How It Works */}
+      <section className="container mx-auto px-4 py-20">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          How It Works
+        </h2>
+        <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
+          <StepCard
+            step={1}
+            icon={<MapPin className="h-6 w-6" />}
+            title="Create a Session"
+            description="Give your session a name and create a unique shareable link in seconds."
+          />
+          <StepCard
+            step={2}
+            icon={<Share2 className="h-6 w-6" />}
+            title="Share the Link"
+            description="Send the link to your friends. They'll enter their name and share their location."
+          />
+          <StepCard
+            step={3}
+            icon={<Target className="h-6 w-6" />}
+            title="See the Midpoint"
+            description="Watch the map update in real-time as everyone joins. The midpoint is calculated automatically!"
+          />
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="border-t bg-muted/30">
+        <div className="container mx-auto px-4 py-20">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why MidPoint?
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
+            <FeatureCard
+              icon={<Users className="h-5 w-5" />}
+              title="No Login Required"
+              description="Jump right in — no accounts needed."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <FeatureCard
+              icon={<Share2 className="h-5 w-5" />}
+              title="Easy Sharing"
+              description="One link to share with all your friends."
+            />
+            <FeatureCard
+              icon={<Target className="h-5 w-5" />}
+              title="Real-time Updates"
+              description="Watch the midpoint update as people join."
+            />
+            <FeatureCard
+              icon={<MapPin className="h-5 w-5" />}
+              title="Google Maps Link"
+              description="Open the midpoint directly in Google Maps."
+            />
+          </div>
         </div>
-      </main>
+      </section>
+    </div>
+  );
+}
+
+function StepCard({
+  step,
+  icon,
+  title,
+  description,
+}: {
+  step: number;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <Card className="relative overflow-hidden">
+      <CardContent className="pt-6 text-center">
+        <div className="absolute top-3 right-3 text-6xl font-bold text-primary/5">
+          {step}
+        </div>
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+          {icon}
+        </div>
+        <h3 className="font-semibold text-lg mb-2">{title}</h3>
+        <p className="text-sm text-muted-foreground">{description}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-muted/50 transition-colors">
+      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        {icon}
+      </div>
+      <h3 className="font-medium mb-1">{title}</h3>
+      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 }
