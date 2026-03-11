@@ -2,10 +2,7 @@ import { ImageResponse } from "next/og";
 
 /**
  * Auto-generated Open Graph image for social sharing.
- * This creates a 1200x630 PNG that appears when the site is shared
- * on Facebook, Twitter, LinkedIn, WhatsApp, etc.
- *
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image
+ * Features the ketemuu logo (map marker + connection dots).
  */
 
 export const runtime = "edge";
@@ -30,7 +27,7 @@ export default async function Image() {
           overflow: "hidden",
         }}
       >
-        {/* Background grid pattern */}
+        {/* Background grid */}
         <div
           style={{
             position: "absolute",
@@ -39,52 +36,73 @@ export default async function Image() {
             right: 0,
             bottom: 0,
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)",
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)",
             backgroundSize: "40px 40px",
-          }}
-        />
-
-        {/* Decorative circles */}
-        <div
-          style={{
-            position: "absolute",
-            top: -100,
-            right: -100,
-            width: 400,
-            height: 400,
-            borderRadius: "50%",
-            background: "rgba(59, 130, 246, 0.15)",
             display: "flex",
           }}
         />
+
+        {/* Glow effects */}
         <div
           style={{
             position: "absolute",
-            bottom: -150,
-            left: -100,
             width: 500,
             height: 500,
             borderRadius: "50%",
-            background: "rgba(239, 68, 68, 0.1)",
+            background: "radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%)",
+            top: -100,
+            right: -100,
+            display: "flex",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            width: 600,
+            height: 600,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%)",
+            bottom: -200,
+            left: -100,
             display: "flex",
           }}
         />
 
-        {/* Logo icon */}
+        {/* Logo — inline SVG map marker with connection dots */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: 80,
-            height: 80,
-            borderRadius: 20,
-            background: "#fff",
-            marginBottom: 30,
-            fontSize: 40,
+            marginBottom: 24,
+            position: "relative",
           }}
         >
-          📍
+          <svg
+            viewBox="0 0 512 512"
+            width="100"
+            height="100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M256 488C256 488 432 304 432 196C432 98.8 353.2 20 256 20C158.8 20 80 98.8 80 196C80 304 256 488 256 488Z"
+              fill="#1e293b"
+            />
+            <circle cx="256" cy="196" r="130" fill="none" stroke="#334155" strokeWidth="6" />
+            <line x1="256" y1="130" x2="186" y2="242" stroke="white" strokeWidth="5" opacity="0.35" strokeLinecap="round" />
+            <line x1="256" y1="130" x2="326" y2="242" stroke="white" strokeWidth="5" opacity="0.35" strokeLinecap="round" />
+            <line x1="186" y1="242" x2="326" y2="242" stroke="white" strokeWidth="5" opacity="0.35" strokeLinecap="round" />
+            <line x1="256" y1="130" x2="256" y2="205" stroke="white" strokeWidth="5" opacity="0.55" strokeLinecap="round" />
+            <line x1="186" y1="242" x2="256" y2="205" stroke="white" strokeWidth="5" opacity="0.55" strokeLinecap="round" />
+            <line x1="326" y1="242" x2="256" y2="205" stroke="white" strokeWidth="5" opacity="0.55" strokeLinecap="round" />
+            <circle cx="256" cy="130" r="18" fill="white" />
+            <circle cx="186" cy="242" r="18" fill="white" />
+            <circle cx="326" cy="242" r="18" fill="white" />
+            <circle cx="256" cy="205" r="26" fill="#3b82f6" />
+            <circle cx="256" cy="205" r="16" fill="white" />
+            <circle cx="256" cy="205" r="8" fill="#3b82f6" />
+          </svg>
         </div>
 
         {/* Title */}
@@ -112,7 +130,7 @@ export default async function Image() {
             display: "flex",
           }}
         >
-          Find the geographic midpoint between friends
+          Find the perfect meeting spot between friends
         </div>
 
         {/* Features row */}

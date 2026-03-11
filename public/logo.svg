@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Map marker pin shape -->
+  <path d="M256 488C256 488 432 304 432 196C432 98.8 353.2 20 256 20C158.8 20 80 98.8 80 196C80 304 256 488 256 488Z" fill="#0f172a"/>
+  
+  <!-- Outer ring on pin head for depth -->
+  <circle cx="256" cy="196" r="130" fill="none" stroke="#1e293b" stroke-width="8"/>
+  
+  <!-- Connection lines (behind dots) -->
+  <line x1="256" y1="130" x2="186" y2="242" stroke="white" stroke-width="5" opacity="0.35" stroke-linecap="round"/>
+  <line x1="256" y1="130" x2="326" y2="242" stroke="white" stroke-width="5" opacity="0.35" stroke-linecap="round"/>
+  <line x1="186" y1="242" x2="326" y2="242" stroke="white" stroke-width="5" opacity="0.35" stroke-linecap="round"/>
+  
+  <!-- Lines from outer dots to center midpoint -->
+  <line x1="256" y1="130" x2="256" y2="205" stroke="white" stroke-width="5" opacity="0.55" stroke-linecap="round"/>
+  <line x1="186" y1="242" x2="256" y2="205" stroke="white" stroke-width="5" opacity="0.55" stroke-linecap="round"/>
+  <line x1="326" y1="242" x2="256" y2="205" stroke="white" stroke-width="5" opacity="0.55" stroke-linecap="round"/>
+  
+  <!-- Participant dots (outer - white) -->
+  <circle cx="256" cy="130" r="18" fill="white"/>
+  <circle cx="186" cy="242" r="18" fill="white"/>
+  <circle cx="326" cy="242" r="18" fill="white"/>
+  
+  <!-- Center midpoint dot (blue accent with white ring) -->
+  <circle cx="256" cy="205" r="26" fill="#3b82f6"/>
+  <circle cx="256" cy="205" r="16" fill="white"/>
+  <circle cx="256" cy="205" r="8" fill="#3b82f6"/>
+</svg>

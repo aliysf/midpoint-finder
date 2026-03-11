@@ -88,10 +88,10 @@ export const metadata: Metadata = {
     },
   },
 
-  // Icons
+  // Icons — auto-generated from icon.tsx and apple-icon.tsx
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/icon",
+    apple: "/apple-icon",
   },
 
   // Google Search Console verification
