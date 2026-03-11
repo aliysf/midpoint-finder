@@ -53,10 +53,10 @@ function JsonLd() {
       },
       {
         "@type": "Question",
-        name: "Do I need to create an account to use MidPoint?",
+        name: "Do I need to create an account to use Ketemuu?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No! MidPoint requires no login or account. Just create a session, share the link, and start finding your midpoint immediately.",
+          text: "No! Ketemuu requires no login or account. Just create a session, share the link, and start finding your midpoint immediately.",
         },
       },
       {
@@ -64,15 +64,15 @@ function JsonLd() {
         name: "Can I find the midpoint between more than two people?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! MidPoint supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location.",
+          text: "Yes! Ketemuu supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location.",
         },
       },
       {
         "@type": "Question",
-        name: "Does MidPoint show nearby restaurants at the midpoint?",
+        name: "Does Ketemuu show nearby restaurants at the midpoint?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! Once the midpoint is calculated, MidPoint automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot.",
+          text: "Yes! Once the midpoint is calculated, Ketemuu automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot.",
         },
       },
     ],
@@ -162,7 +162,7 @@ export default function HomePage() {
       <section className="border-t bg-muted/30">
         <div className="container mx-auto px-4 py-20">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Why MidPoint?
+            Why Ketemuu?
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
             <FeatureCard

@@ -19,7 +19,7 @@ const SITE_URL = "https://ketemuu.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "ketemuu — Find the Perfect Meeting Spot Between Friends",
+    default: "Ketemuu — Find the Perfect Meeting Spot Between Friends",
     template: "%s | ketemuu",
   },
   description:
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     "maps",
     "location sharing",
   ],
-  authors: [{ name: "ketemuu" }],
-  creator: "ketemuu",
-  publisher: "ketemuu",
-  applicationName: "ketemuu",
+  authors: [{ name: "Ali Yusuf" }],
+  creator: "Ali Yusuf",
+  publisher: "Ali Yusuf",
+  applicationName: "Ketemuu",
   category: "Utilities",
 
   // Open Graph — for Facebook, LinkedIn, WhatsApp, etc.
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "ketemuu",
-    title: "ketemuu — Find the Perfect Meeting Spot Between Friends",
+    title: "Ketemuu — Find the Perfect Meeting Spot Between Friends",
     description:
       "Create a shareable link, have friends share their location, and instantly find the geographic midpoint between everyone. Perfect for finding fair meeting spots!",
     images: [
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ketemuu — Find the midpoint between friends on a map",
+        alt: "Ketemuu — Find the midpoint between friends on a map",
       },
     ],
   },
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "ketemuu — Find the Meeting Spot Between Friends",
+    title: "Ketemuu — Find the Meeting Spot Between Friends",
     description:
       "Share a link with friends, everyone shares their location, and instantly see the geographic midpoint on a live map.",
     images: ["/og-image.png"],

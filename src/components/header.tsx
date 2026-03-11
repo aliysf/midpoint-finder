@@ -51,7 +51,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <Logo className="h-9 w-9" />
-          <span>ketemuu</span>
+          <span>Ketemuu</span>
         </Link>
         <nav className="flex items-center gap-4">
           <Link
