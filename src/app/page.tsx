@@ -198,19 +198,19 @@ export default function HomePage() {
           <div className="space-y-6">
             <FaqItem
               question="How do I find the midpoint between two locations?"
-              answer='Create a session on MidPoint, share the link with a friend, and both of you share your locations. The app instantly calculates and shows the geographic midpoint on a map — perfect for finding a fair meeting spot.'
+              answer='Create a session on Ketemuu, share the link with a friend, and both of you share your locations. The app instantly calculates and shows the geographic midpoint on a map — perfect for finding a fair meeting spot.'
             />
             <FaqItem
-              question="Do I need to create an account to use MidPoint?"
-              answer="No! MidPoint requires no login or account. Just create a session, share the link, and start finding your midpoint immediately."
+              question="Do I need to create an account to use Ketemuu?"
+              answer="No! Ketemuu requires no login or account. Just create a session, share the link, and start finding your midpoint immediately."
             />
             <FaqItem
               question="Can I find the midpoint between more than two people?"
-              answer="Yes! MidPoint supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location."
+              answer="Yes! Ketemuu supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location."
             />
             <FaqItem
-              question="Does MidPoint show nearby restaurants at the midpoint?"
-              answer="Yes! Once the midpoint is calculated, MidPoint automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot."
+              question="Does Ketemuu show nearby restaurants at the midpoint?"
+              answer="Yes! Once the midpoint is calculated, Ketemuu automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot."
             />
           </div>
         </div>
