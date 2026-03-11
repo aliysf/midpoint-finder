@@ -2,11 +2,11 @@
 
 ---
 
-🚀 I just built and shipped **MidPoint** — a web app that finds the geographic midpoint between friends!
+🚀 I just built and shipped **ketemuu** — a web app that finds the geographic midpoint between friends!
 
 Ever had that "where should we meet?" conversation that takes 30 minutes of back-and-forth? 😅
 
-**MidPoint solves it in seconds:**
+**ketemuu solves it in seconds:**
 
 1️⃣ Create a session — get a shareable link
 2️⃣ Share with friends — everyone taps to share their location
@@ -26,7 +26,7 @@ Ever had that "where should we meet?" conversation that takes 30 minutes of back
 • Leaflet maps + OpenStreetMap
 • Deployed on Vercel
 
-🔗 **Try it live:** https://midpoint-finder-gamma.vercel.app
+🔗 **Try it live:** https://ketemuu.vercel.app
 📦 **Open source:** https://github.com/aliysf/midpoint-finder
 
 Built this in a single session — from idea to deployment. What features would you add? 👇
@@ -44,9 +44,9 @@ Built this in a single session — from idea to deployment. What features would 
 5. Upload all 7 images as a LinkedIn carousel post (Document post type)
 
 ### Slide order:
-1. **Cover** — MidPoint logo + tagline (dark)
+1. **Cover** — ketemuu logo + tagline (dark)
 2. **Problem** — Why meeting spots are hard (white)
-3. **Solution** — How MidPoint solves it (blue)
+3. **Solution** — How ketemuu solves it (blue)
 4. **How It Works** — 3-step flow (light gray)
 5. **Features** — 6 key features grid (dark)
 6. **Tech Stack** — Technologies used (white)
