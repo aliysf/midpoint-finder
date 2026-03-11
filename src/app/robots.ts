@@ -9,7 +9,7 @@ import type { MetadataRoute } from "next";
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://midpoint-finder-gamma.vercel.app";
+  const baseUrl = "https://ketemuu.vercel.app";
 
   return {
     rules: [

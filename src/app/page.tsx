@@ -2,7 +2,7 @@ import { CreateSessionDialog } from "@/components/create-session-dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Share2, Users, Target } from "lucide-react";
 
-const SITE_URL = "https://midpoint-finder-gamma.vercel.app";
+const SITE_URL = "https://ketemuu.vercel.app";
 
 /**
  * JSON-LD Structured Data for Google Rich Results.
@@ -12,7 +12,7 @@ function JsonLd() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "MidPoint",
+    name: "ketemuu",
     url: SITE_URL,
     description:
       "Find the geographic midpoint between friends. Create a shareable link, have everyone share their location, and instantly discover the central meeting spot.",
@@ -34,7 +34,7 @@ function JsonLd() {
     screenshot: `${SITE_URL}/og-image.png`,
     author: {
       "@type": "Organization",
-      name: "MidPoint",
+      name: "ketemuu",
       url: SITE_URL,
     },
   };
@@ -48,15 +48,15 @@ function JsonLd() {
         name: "How do I find the midpoint between two locations?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Create a session on MidPoint, share the link with a friend, and both of you share your locations. The app instantly calculates and shows the geographic midpoint on a map — perfect for finding a fair meeting spot.",
+          text: "Create a session on ketemuu, share the link with a friend, and both of you share your locations. The app instantly calculates and shows the geographic midpoint on a map — perfect for finding a fair meeting spot.",
         },
       },
       {
         "@type": "Question",
-        name: "Do I need to create an account to use MidPoint?",
+        name: "Do I need to create an account to use ketemuu?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No! MidPoint requires no login or account. Just create a session, share the link, and start finding your midpoint immediately.",
+          text: "No! ketemuu requires no login or account. Just create a session, share the link, and start finding your midpoint immediately.",
         },
       },
       {
@@ -64,15 +64,15 @@ function JsonLd() {
         name: "Can I find the midpoint between more than two people?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! MidPoint supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location.",
+          text: "Yes! ketemuu supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location.",
         },
       },
       {
         "@type": "Question",
-        name: "Does MidPoint show nearby restaurants at the midpoint?",
+        name: "Does ketemuu show nearby restaurants at the midpoint?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! Once the midpoint is calculated, MidPoint automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot.",
+          text: "Yes! Once the midpoint is calculated, ketemuu automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot.",
         },
       },
     ],
@@ -93,7 +93,7 @@ function JsonLd() {
 }
 
 /**
- * Home page — landing page for MidPoint.
+ * Home page — landing page for ketemuu.
  *
  * Features:
  * - JSON-LD structured data for Google Rich Results
@@ -162,7 +162,7 @@ export default function HomePage() {
       <section className="border-t bg-muted/30">
         <div className="container mx-auto px-4 py-20">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Why MidPoint?
+            Why ketemuu?
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
             <FeatureCard
@@ -198,19 +198,19 @@ export default function HomePage() {
           <div className="space-y-6">
             <FaqItem
               question="How do I find the midpoint between two locations?"
-              answer='Create a session on MidPoint, share the link with a friend, and both of you share your locations. The app instantly calculates and shows the geographic midpoint on a map — perfect for finding a fair meeting spot.'
+              answer='Create a session on ketemuu, share the link with a friend, and both of you share your locations. The app instantly calculates and shows the geographic midpoint on a map — perfect for finding a fair meeting spot.'
             />
             <FaqItem
-              question="Do I need to create an account to use MidPoint?"
-              answer="No! MidPoint requires no login or account. Just create a session, share the link, and start finding your midpoint immediately."
+              question="Do I need to create an account to use ketemuu?"
+              answer="No! ketemuu requires no login or account. Just create a session, share the link, and start finding your midpoint immediately."
             />
             <FaqItem
               question="Can I find the midpoint between more than two people?"
-              answer="Yes! MidPoint supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location."
+              answer="Yes! ketemuu supports any number of participants. Share the session link with as many friends as you want — the midpoint updates in real-time as each person joins and shares their location."
             />
             <FaqItem
-              question="Does MidPoint show nearby restaurants at the midpoint?"
-              answer="Yes! Once the midpoint is calculated, MidPoint automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot."
+              question="Does ketemuu show nearby restaurants at the midpoint?"
+              answer="Yes! Once the midpoint is calculated, ketemuu automatically shows nearby restaurants, cafes, bars, and other venues around the midpoint location, making it easy to pick a meeting spot."
             />
           </div>
         </div>

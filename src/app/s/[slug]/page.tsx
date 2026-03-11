@@ -37,8 +37,8 @@ export async function generateMetadata({
     // Fallback to generic metadata if DB fails
   }
 
-  const title = `${sessionName} — MidPoint`;
-  const description = `Join "${sessionName}" on MidPoint! ${
+  const title = `${sessionName} — ketemuu`;
+  const description = `Join "${sessionName}" on ketemuu! ${
     participantCount > 0
       ? `${participantCount} ${participantCount === 1 ? "person has" : "people have"} already shared their location.`
       : "Share your location to find the group's geographic midpoint."
@@ -51,7 +51,7 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
-      url: `https://midpoint-finder-gamma.vercel.app/s/${slug}`,
+      url: `https://ketemuu.vercel.app/s/${slug}`,
     },
     twitter: {
       card: "summary_large_image",

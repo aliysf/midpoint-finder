@@ -8,8 +8,8 @@ import type { MetadataRoute } from "next";
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "MidPoint — Find the Middle Ground",
-    short_name: "MidPoint",
+    name: "ketemuu — Find the Middle Ground",
+    short_name: "ketemuu",
     description:
       "Find the geographic midpoint between friends. Create a shareable link, share locations, and discover the perfect meeting spot.",
     start_url: "/",

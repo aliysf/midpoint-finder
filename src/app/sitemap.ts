@@ -12,7 +12,7 @@ import type { MetadataRoute } from "next";
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://midpoint-finder-gamma.vercel.app";
+  const baseUrl = "https://ketemuu.vercel.app";
 
   return [
     {

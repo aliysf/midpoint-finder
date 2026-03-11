@@ -9,7 +9,7 @@ import { ImageResponse } from "next/og";
  */
 
 export const runtime = "edge";
-export const alt = "MidPoint — Find the midpoint between friends on a map";
+export const alt = "ketemuu — Find the midpoint between friends on a map";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -98,7 +98,7 @@ export default async function Image() {
             display: "flex",
           }}
         >
-          MidPoint
+          ketemuu
         </div>
 
         {/* Subtitle */}
@@ -152,7 +152,7 @@ export default async function Image() {
             display: "flex",
           }}
         >
-          midpoint-finder-gamma.vercel.app
+          ketemuu.vercel.app
         </div>
       </div>
     ),

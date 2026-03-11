@@ -14,17 +14,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://midpoint-finder-gamma.vercel.app";
+const SITE_URL = "https://ketemuu.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "MidPoint — Find the Geographic Midpoint Between Friends",
-    template: "%s | MidPoint",
+    default: "ketemuu — Find the Perfect Meeting Spot Between Friends",
+    template: "%s | ketemuu",
   },
   description:
     "Create a shareable link, have friends share their location, and instantly find the geographic midpoint between everyone. Find the perfect meeting spot for lunch, hangouts, or weekend trips — no login required!",
   keywords: [
+    "ketemuu",
     "midpoint finder",
     "geographic midpoint",
     "meeting point calculator",
@@ -40,10 +41,10 @@ export const metadata: Metadata = {
     "maps",
     "location sharing",
   ],
-  authors: [{ name: "MidPoint" }],
-  creator: "MidPoint",
-  publisher: "MidPoint",
-  applicationName: "MidPoint",
+  authors: [{ name: "ketemuu" }],
+  creator: "ketemuu",
+  publisher: "ketemuu",
+  applicationName: "ketemuu",
   category: "Utilities",
 
   // Open Graph — for Facebook, LinkedIn, WhatsApp, etc.
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "MidPoint",
-    title: "MidPoint — Find the Geographic Midpoint Between Friends",
+    siteName: "ketemuu",
+    title: "ketemuu — Find the Perfect Meeting Spot Between Friends",
     description:
       "Create a shareable link, have friends share their location, and instantly find the geographic midpoint between everyone. Perfect for finding fair meeting spots!",
     images: [
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "MidPoint — Find the midpoint between friends on a map",
+        alt: "ketemuu — Find the midpoint between friends on a map",
       },
     ],
   },
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "MidPoint — Find the Midpoint Between Friends",
+    title: "ketemuu — Find the Meeting Spot Between Friends",
     description:
       "Share a link with friends, everyone shares their location, and instantly see the geographic midpoint on a live map.",
     images: ["/og-image.png"],

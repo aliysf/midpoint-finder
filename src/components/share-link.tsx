@@ -41,7 +41,7 @@ export function ShareLink({ slug }: ShareLinkProps) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Join my MidPoint session",
+          title: "Join my ketemuu session",
           text: "Click the link to share your location and find our midpoint!",
           url,
         });
